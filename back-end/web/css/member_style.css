@@ -1,3 +1,8 @@
+.nav-logo-error {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 
 .form_block_input {
     display: flex;
@@ -23,14 +28,6 @@
     color: red;
     font-size: 24px;
     margin-left: 20px;
-    width: 300px;
-}
-
-.ok {
-    color: darkcyan;
-    font-size: 24px;
-    margin-left: 20px;
-    width: 300px;
 }
 
 ::placeholder {

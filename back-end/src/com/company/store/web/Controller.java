@@ -61,7 +61,6 @@ public class Controller extends javax.servlet.http.HttpServlet {
 
             // 服務端驗證
             List<String> errors = new ArrayList<>();
-            List<String> ok = new ArrayList<>();
             if (userid == null || userid.equals("")) {
                 errors.add("帳號不能為空值！");
             }
@@ -97,9 +96,7 @@ public class Controller extends javax.servlet.http.HttpServlet {
                 try {
                     // 註冊成功
                     customerService.register(customer);
-                    ok.add("註冊成功！");
-                    request.setAttribute("ok", ok);
-                    request.getRequestDispatcher("member.jsp").forward(request, response);
+                    request.getRequestDispatcher("controller?action=list").forward(request, response);
                 } catch (ServiceException e) {
                     // ID已經被註冊
                     errors.add("ID已經有人使用，請重新輸入！");
@@ -117,11 +114,9 @@ public class Controller extends javax.servlet.http.HttpServlet {
             customer.setId(userid);
             customer.setPassword(password);
 
-
             if (customerService.login(customer)) { // 登入成功
                 HttpSession session = request.getSession();
                 session.setAttribute("customer", customer);
-                session.setAttribute("customerName", customer.getName()); // 把使用者名字存到 session
                 request.getRequestDispatcher("controller?action=list").forward(request, response);
             } else { // 登入失敗
                 List<String> errors = new ArrayList<>();
@@ -130,12 +125,7 @@ public class Controller extends javax.servlet.http.HttpServlet {
                 request.getRequestDispatcher("member.jsp").forward(request, response);
             }
 
-        }else if ("logout".equals(action)) {
-            HttpSession session = request.getSession();
-            session.removeAttribute("customerName");
-            request.getRequestDispatcher("controller?action=list").forward(request, response);
-        }
-        else if ("list".equals(action)) {
+        } else if ("list".equals(action)) {
             //------------商品列表--------------
             List<Goods> goodsList = goodsService.queryAll();
 
@@ -160,7 +150,7 @@ public class Controller extends javax.servlet.http.HttpServlet {
             //------------有登入秀名字----------------
 
             HttpSession session = request.getSession();
-            session.getAttribute("customerName");
+            session.getAttribute("customer");
 
 
 
@@ -279,8 +269,6 @@ public class Controller extends javax.servlet.http.HttpServlet {
             }
 
             request.setAttribute("total", total);
-            HttpSession session = request.getSession();
-            session.getAttribute("customerName");
             request.getRequestDispatcher("cart.jsp").forward(request, response);
         } else if ("sub_ord".equals(action)) {
             //------------提交訂單-----------
