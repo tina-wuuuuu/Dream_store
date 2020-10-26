@@ -22,11 +22,16 @@
 <div class="wraper">
     <div class="header member-header">
         <div class="nav-bar">
-            <div class="nav-logo-error">
+            <div class="nav-logo-block">
                 <h1><a href="controller?action=list">Dream</a></h1>
                 <ul>
                     <c:forEach var="error" items="${errors}">
                         <li class="error">${error}</li>
+                    </c:forEach>
+                </ul>
+                <ul>
+                    <c:forEach var="ok" items="${ok}">
+                        <li class="ok">${ok}</li>
                     </c:forEach>
                 </ul>
             </div>
@@ -67,7 +72,7 @@
                         <input type="date" name="birthday" placeholder="請輸入生日"/>
                         <p class="input-ok">生日沒填</p>
                     </div>
-                    電話：
+                    手機：
                     <div class="form_block_input">
                         <input type="text" name="phone" placeholder="請輸入電話" pattern="[0-9]{10}"/>
                         <p class="input-ok">電話沒填</p>

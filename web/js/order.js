@@ -2,7 +2,6 @@ document.querySelector('.container').addEventListener('click', (e) => {
     const {target} = e;
     total = document.getElementById("total").innerText;
 
-
     /*  -----------------刪除商品項目-----------------------*/
     if (target.classList.contains('del_btn')) {
         const totalDel = target.parentNode.parentNode.children[3].children[0].innerText

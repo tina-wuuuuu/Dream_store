@@ -87,7 +87,7 @@ table {
 .header .menu {
     margin-top: 20px;
     display: flex;
-    width: 400px;
+    max-width: 400px;
     justify-content: space-around;
 }
 
@@ -95,7 +95,7 @@ table {
     display: inline-block;
     color: #a19f9f;
     text-align: center;
-    width: 110px;
+    max-width: 110px;
     margin: 0 10px;
     font-size: 20px;
 }
@@ -108,6 +108,19 @@ table {
     margin-top: 5px;
     height: 100%;
     padding: 50px;
+}
+
+.nav-logo-block {
+    max-width: 400px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.username-block {
+    font-size: 24px;
+    color: sandybrown;
+    margin-left: 20px;
 }
 
 .banner h2 {

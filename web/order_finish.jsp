@@ -87,7 +87,7 @@
         <div class="footer_icon">
             <a href="controller?action=list"><img class="footer_loge" src="svg/title_logo.svg" /></a>
             <ul class="social_network">
-                <li><a href=""></a><img class='icon' src="svg/facebook.svg"/></a></li>
+                <li><a href=""></a><img class='icon' src="svg/facebook.svg"/></li>
                 <li><a href=""><img class='icon' src="svg/instagram-sketched.svg" /></a></li>
                 <li><a href=""><img class='icon' src="svg/twitter.svg" /></a></li>
             </ul>

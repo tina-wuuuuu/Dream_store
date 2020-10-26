@@ -70,7 +70,7 @@
                         <div class="center-vertical amount">
                             <button class="amount_btn minus_btn" type="button">-</button>
                             <input class="order_amount" name="quantity_${row.goodsid}"
-                                 onblur="calc(${row.goodsid}, this)" value="${row.quantity}" readonly="readonly"/>
+                                   onblur="calc(${row.goodsid}, this)" value="${row.quantity}" readonly="readonly"/>
                             <button class="amount_btn add_btn" type="button">+</button>
                         </div>
                     </div>
@@ -82,7 +82,8 @@
                         </button>
 
                         <!-- 跳出結帳 alert -->
-                        <div class="modal fade" id="checkAccounts" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                        <div class="modal fade" id="checkAccounts" data-backdrop="static" data-keyboard="false"
+                             tabindex="-1"
                              aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -102,32 +103,33 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- 跳出刪除 alert -->
-<%--                        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"--%>
-<%--                             tabindex="-1"--%>
-<%--                             aria-labelledby="staticBackdropLabel" aria-hidden="true">--%>
-<%--                            <div class="modal-dialog">--%>
-<%--                                <div class="modal-content">--%>
-<%--                                    <div class="modal-header">--%>
-<%--                                        <h5 class="modal-title" id="staticBackdropLabel">確定刪除 ? </h5>--%>
-<%--                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">--%>
-<%--                                            <span aria-hidden="true">&times;</span>--%>
-<%--                                        </button>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="modal-body">--%>
-<%--                                        確定要將此商品刪除 ?--%>
-<%--                                    </div>--%>
-<%--                                    <div class="modal-footer">--%>
-<%--                                        <button type="button" id="cel" class="btn btn-secondary" data-dismiss="modal">--%>
-<%--                                            取消--%>
-<%--                                        </button>--%>
-<%--                                        <button type="button" id="delDetermine" class="btn btn-primary"--%>
-<%--                                                data-dismiss="modal">確定刪除--%>
-<%--                                        </button>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
+                            <%--                        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"--%>
+                            <%--                             tabindex="-1"--%>
+                            <%--                             aria-labelledby="staticBackdropLabel" aria-hidden="true">--%>
+                            <%--                            <div class="modal-dialog">--%>
+                            <%--                                <div class="modal-content">--%>
+                            <%--                                    <div class="modal-header">--%>
+                            <%--                                        <h5 class="modal-title" id="staticBackdropLabel">確定刪除 ? </h5>--%>
+                            <%--                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">--%>
+                            <%--                                            <span aria-hidden="true">&times;</span>--%>
+                            <%--                                        </button>--%>
+                            <%--                                    </div>--%>
+                            <%--                                    <div class="modal-body">--%>
+                            <%--                                        確定要將此商品刪除 ?--%>
+                            <%--                                    </div>--%>
+                            <%--                                    <div class="modal-footer">--%>
+                            <%--                                        <button type="button" id="cel" class="btn btn-secondary" data-dismiss="modal">--%>
+                            <%--                                            取消--%>
+                            <%--                                        </button>--%>
+                            <%--                                        <button type="button" id="delDetermine" class="btn btn-primary"--%>
+                            <%--                                                data-dismiss="modal">確定刪除--%>
+                            <%--                                        </button>--%>
+                            <%--                                    </div>--%>
+                            <%--                                </div>--%>
+                            <%--                            </div>--%>
+                            <%--                        </div>--%>
                     </div>
                 </div>
             </c:forEach>
@@ -140,16 +142,23 @@
             <div class="sub_total">
                 <div>商品總金額</div>
                 <c:if test="${not empty cart}">
-                <span class="total_price" id="total">${total}</span>
-                <input class="settle_accounts_btn" type="button" value="結帳" data-toggle="modal"
-                       data-target="#checkAccounts">
+                    <span class="total_price" id="total">${total}</span>
+                    <input class="settle_accounts_btn" type="button" value="結帳" data-toggle="modal"
+                           data-target="#checkAccounts" >
                 </c:if>
             </div>
             <input type="hidden" name="action" value="sub_ord">
         </div>
     </footer>
 </form>
-
+<script>
+        <c:if test="${empty customerName}">
+        document.querySelector('.settle_accounts_btn').addEventListener('click',(e) => {
+            alert("請先登入會員")
+            e.stopPropagation();
+        });
+        </c:if>
+</script>
 <script src="js/order.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
